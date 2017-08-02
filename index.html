@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <!-- <link href="bootstrap\css\bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="bootstrap\js\jquery-1.9.1.min.js"></script>
+    <script src="bootstrap\js\bootstrap.min.js"></script> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style text="text/css">
+    .row + .row {
+      margin-top: 1em;
+    }
+    #bulkContainer{
+      display: none;
+    }
+    #divDefects{
+      display: none;
+    }
+    .bg-primary{
+      background-color: #0275d8;
+    }
+    #navbarHeader{
+      color: white;
+      font-size: 1.5em;
+    }
+    #settingIcon{
+      color: white;
+    }
+    .modal-title{
+      float:left;
+    }
+  </style>
+
+  <!-- Insert this line above script imports  -->
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Insert this line after script imports -->
+  <script>if (window.module) module = window.module;</script>
+
+  <script src="index.js">
+
+
+    // You can also require other files to run in this process
+    //require('./renderer.js')
+
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-inverse bg-primary">
+  <!-- Navbar content -->
+  <nav class="navbar-toggleable-md navbar-inverse bg-primary">
+  <a class="navbar-brand" href="#"><span id="navbarHeader">Pattern Classifier</span></a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav nav pull-right">
+      <a id="settingIcon" class="nav-item nav-link" href="#" data-toggle="modal" data-target="#modalSettings"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</a>
+    </div>
+  </div>
+</nav>
+</nav>
+    <!-- <div class="row">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav pull-right" >
+            <li role="presentation" class="active">
+              <a href="#" class="btn btn-default" data-toggle="modal" data-target="#modalSettings">
+                <span class="glyphicon glyphicon-cog"></span> Settings
+              </a>
+            </li>
+          </ul>
+        </nav> 
+        <h3 class="text-muted">Pattern Classifier</h3>
+      </div>
+    </div> -->
+
+    <div class="row" >
+      <div id="upload_types" class="col-xs-offset-3 col-xs-9">
+          <label class="btn btn-primary active">
+          <input type="radio" name="upload_type" id="individual" value="individual" autocomplete="off" checked> Individual
+        </label>
+
+        <label class="btn btn-primary">
+          <input type="radio" name="upload_type" id="bulk" value="bulk" autocomplete="off"> Bulk Upload
+        </label>
+        
+      </div>
+    </div>
+
+    <div id="individualContainer" class="row">
+      <div class="col-xs-2">
+        <label class="lblDefect">Defect Description:</label>
+      </div>
+      <div class="col-xs-7">
+        <input id="txtDefect" type="text" class="form-control" placeholder="Enter Defect Description"/>
+      </div>
+      <div class="col-xs-3">
+        <input id="btnAddDefect" type="button" class="btn btn-primary" Value="Add"/>
+      </div>
+    </div>
+    <div id="bulkContainer" class="row">
+        <div class="col-xs-2">
+          <label class="lblUploadFile">Upload File:</label>
+        </div>
+        <div class="col-xs-7">
+          <input id="fileDefects" type="file" class="form-control"/>
+        </div>
+        <div class="col-xs-3"></div>
+    </div> 
+
+    <div class="row" >
+      <div class="col-xs-offset-2 col-xs-10">
+        <input id="btnClassify" type="button" class="btn btn-primary" Value="Classify" />
+        &nbsp;&nbsp;&nbsp;
+        <input id="btnDisplayResult" type="button" value="Display Result" class="btn btn-primary" align="center" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div id ="displayDefects" ></div>
+        <div id="divDefects" ></div>
+        <div id="divOutput"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" >
+        <div id="divtableData" ></div>
+      </div>
+    </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalSettings" tabindex="-1" role="dialog" aria-labelledby="modalSettingsLabal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Configurations</h5>
+          <button id="btnmodalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            
+          <div class="row">
+            <div class="col-xs-4" >
+              <label>Work Dir:</label>
+            </div>
+            <div class="col-xs-7">
+              <input id="txtWorkDir" type="text" class="form-control" placeholder="Enter Working Directory" autofocus/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4" >
+              <label>Training Path:</label>
+            </div>
+            <div class="col-xs-7">
+              <input id="txtTrainingPath" type="file" class="form-control" placeholder="Enter Training Path"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4" >
+              <label>Result Dir:</label>
+            </div>
+            <div class="col-xs-7">
+              <input id="txtResultDir" type="text" class="form-control" placeholder="Enter Result Directory"/>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="btnModalSave" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+</html>
